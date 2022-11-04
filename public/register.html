@@ -7,8 +7,13 @@
    </head>
    <body>
       <form action="/api/user">
-         <input name="login" type="text" placeholder="Login" />
-         <input name="password" type="password" placeholder="Hasło" />
+         <input name="login" type="text" placeholder="Login" id="login" />
+         <input
+            name="password"
+            type="password"
+            placeholder="Hasło"
+            id="password"
+         />
          <button>Zarejestruj się</button>
          <output name="output"></output>
       </form>
@@ -20,11 +25,12 @@
          async function handleSubmit(event) {
             event.preventDefault()
 
-            const formData = new FormData(event.target)
+            const login = document.getElementById('login').value.trim()
+            const password = document.getElementById('password').value.trim()
 
             const response = await fetch('/api/user', {
                method: 'POST',
-               body: JSON.stringify({ a: 'a2' }),
+               body: JSON.stringify({ login, password }),
                headers: {
                   'Content-Type': 'application/json',
                },

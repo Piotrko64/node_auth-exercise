@@ -22,9 +22,12 @@
 
             const formData = new FormData(event.target)
 
-            const response = await fetch(form.action, {
+            const response = await fetch('/api/user', {
                method: 'POST',
-               body: formData,
+               body: JSON.stringify({ a: 'a2' }),
+               headers: {
+                  'Content-Type': 'application/json',
+               },
             })
             const responseData = await response.json()
 

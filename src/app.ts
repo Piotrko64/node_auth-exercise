@@ -8,16 +8,16 @@ const app = express()
 app.use(bodyParser.json())
 bodyParser.urlencoded({ extended: true })
 
-app.get('/', (req, res) => {
+app.get('/register', (req, res) => {
    res.sendFile(getPathToView('register.html'))
 })
 app.post('/api/user', (req, res) => {
-   const { login, password } = req.body
+   let { login, password } = req.body
    if (!login || !password) {
       return res.send({ error: 'Something is wrong' })
    }
-   console.log(bcrypt.hashSync(password, 8))
-   res.json(req.body)
+   password = bcrypt.hashSync(password, 8)
+   res.json({ login, password })
 })
 
 app.listen(3100, () => {

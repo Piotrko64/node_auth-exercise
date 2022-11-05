@@ -101,6 +101,14 @@
   resolved "https://registry.yarnpkg.com/@types/crypto-js/-/crypto-js-4.1.1.tgz#602859584cecc91894eb23a4892f38cfa927890d"
   integrity sha512-BG7fQKZ689HIoc5h+6D2Dgq1fABRa0RbBWKBd9SP/MVRVXROflpm5fhwyATX5duFmbStzyzyycPB8qUYKDH3NA==
 
+"@types/express-ejs-layouts@^2.5.0":
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/@types/express-ejs-layouts/-/express-ejs-layouts-2.5.0.tgz#de000689e10ac8046daea0e3b235f1f27308567e"
+  integrity sha512-/ZPZgDy5SBOPONy7wFTmfJagLoU/V4O7y2gu9e/dCzZyxyNaFFI2VjvDO60BDGw2GCPxwiNNGYMlXmVJyPMRoA==
+  dependencies:
+    "@types/express" "*"
+    "@types/node" "*"
+
 "@types/express-serve-static-core@^4.17.18":
   version "4.17.31"
   resolved "https://registry.yarnpkg.com/@types/express-serve-static-core/-/express-serve-static-core-4.17.31.tgz#a1139efeab4e7323834bb0226e62ac019f474b2f"

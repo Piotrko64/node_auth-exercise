@@ -5,16 +5,16 @@ import { v4 } from 'uuid';
 import { getExpires } from './utils/getExpires';
 
 app.get('/register', (req, res) => {
-   res.sendFile(getPathToView('register.html'));
+   res.render('register');
 });
 app.get('/login', (req, res) => {
-   res.render('../views/login.ejs');
+   res.render('login');
 });
 app.get('/status', (req, res) => {
-   res.sendFile(getPathToView('status.html'));
+   res.render('status');
 });
-app.get('/wylogowanie', (req, res) => {
-   res.sendFile(getPathToView('wylogowanie.html'));
+app.get('/logout', (req, res) => {
+   res.render('logout');
 });
 
 app.post('/api/createUser', async (req, res) => {

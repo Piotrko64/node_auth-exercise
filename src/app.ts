@@ -5,12 +5,12 @@ import { PrismaClient } from '@prisma/client';
 import sha3 from 'crypto-js/sha3';
 import { v4 } from 'uuid';
 import { getExpires } from './utils/getExpires';
-
-const secretPhrase = '326bsahkasjk:9|%$2wq29DSFH';
+import cookieParser from 'cookie-parser';
 
 const prisma = new PrismaClient();
 const app = express();
 
+app.use(cookieParser());
 app.use(bodyParser.json());
 bodyParser.urlencoded({ extended: true });
 
@@ -19,6 +19,9 @@ app.get('/register', (req, res) => {
 });
 app.get('/login', (req, res) => {
    res.sendFile(getPathToView('login.html'));
+});
+app.get('/status', (req, res) => {
+   res.sendFile(getPathToView('status.html'));
 });
 
 app.post('/api/createUser', async (req, res) => {
@@ -58,13 +61,44 @@ app.post('/api/login', async (req, res) => {
       }
       const sessionId = v4();
 
-      res.cookie('sessionID', sessionId, getExpires()).json('User is login');
-
-      const session = await prisma.session.create({
+      await prisma.session.create({
          data: { userId: user.id, sessionId },
       });
+
+      return res
+         .cookie('sessionID', sessionId, getExpires())
+         .json('User is login');
    } catch (err) {
       return res.json({ err });
+   }
+});
+
+app.get('/api/status', async (req, res) => {
+   const sessionId = req.cookies.sessionID;
+   if (!sessionId) {
+      return res.json({
+         err: 'Sesja wygasła',
+      });
+   }
+   try {
+      const findSession = await prisma.session.findUnique({
+         where: { sessionId },
+      });
+
+      const idUser = findSession?.userId;
+      const findUser = await prisma.user.findUnique({
+         where: { id: idUser },
+         include: { TimerEvents: true },
+      });
+
+      res.json({
+         message: sessionId ? 'JESTEŚ ZALOGOWANY' : 'NIE JESTEŚ ZALOGOWANY',
+         login: findUser,
+      });
+   } catch (err) {
+      res.json({
+         err,
+      });
    }
 });
 

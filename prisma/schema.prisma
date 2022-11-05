@@ -13,17 +13,10 @@ model User {
   password String
  createdAt DateTime @default(now())
  Session Session[]
- Events Event[]
+ TimerEvents TimerEvent[]
 }
 
-model Session {
-  userId Int @unique
-  user User @relation(fields: [userId], references: [id])
-  sessionId String @unique
- createdAt DateTime @default(now())
-}
-
-model Event {
+model TimerEvent {
   userId Int @unique
   user User @relation(fields: [userId], references: [id])
   eventId String @unique
@@ -32,3 +25,11 @@ model Event {
   dateEvent DateTime
    createdAt DateTime @default(now())
 }
+
+model Session {
+  userId Int 
+  user User @relation(fields: [userId], references: [id])
+  sessionId String @unique
+ createdAt DateTime @default(now())
+}
+

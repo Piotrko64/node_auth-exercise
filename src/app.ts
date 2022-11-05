@@ -16,8 +16,8 @@ app.use(cors());
 app.use(ejsLayout);
 
 app.set('view engine', 'ejs');
-app.set('views', path.join(`${__dirname}/views`));
-app.set('layout', '../views/layout/main.ejs');
+app.set('views', path.join(`${__dirname}/views/pages`));
+app.set('layout', '../../views/layout/main.ejs');
 
 app.listen(PORT, () => {
    console.log('App is starting...');

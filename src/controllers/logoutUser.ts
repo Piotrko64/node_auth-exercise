@@ -12,7 +12,7 @@ export async function logoutUser(req: Request, res: Response) {
       await prisma.session.deleteMany({
          where: { userId: findSession?.userId },
       });
-      res.clearCookie('sessionID').json({ message: 'Zostałeś wylogowany' });
+      res.clearCookie('sessionID').json({ message: 'you are logout' });
    } catch (err) {
       res.json({ err });
    }

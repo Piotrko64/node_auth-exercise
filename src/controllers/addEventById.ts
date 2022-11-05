@@ -8,12 +8,6 @@ export async function addEventById(req: Request, res: Response) {
       const sessionId = req.cookies.sessionID;
       const { eventId } = req.body;
 
-      console.log(req.body);
-
-      if (!sessionId) {
-         return res.status(401).json({ err: 'You are not login' });
-      }
-
       const userId = await getUserIdBySessionId(sessionId);
 
       if (!userId) {

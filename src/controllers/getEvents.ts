@@ -7,14 +7,10 @@ export async function getEvents(req: Request, res: Response) {
    try {
       const sessionId = req.cookies.sessionID;
 
-      if (!sessionId) {
-         return res.status(401).json({ err: 'You are not login' });
-      }
-
       const userId = await getUserIdBySessionId(sessionId);
 
       if (!userId) {
-         return res.status(400).json({ err: 'Something wrong' });
+         return res.status(400).json({ err: 'Something is wrong' });
       }
 
       const addNewEvent = await prisma.timerEvent.findMany({

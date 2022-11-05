@@ -1,0 +1,32 @@
+    <h2> ADD RANDOM EVENT </h2>
+      <form>
+        <input value="ae2913ce-189e-4d08-b35c-b1ca14ba0a26"/>
+      <button type="submit"> ADD RANDOM EVENT </button>
+        <output name="output"></output>
+
+      </form>
+
+      <script>
+        const eventId = document.querySelector('input').value;
+         const form = document.querySelector('form');
+         form.addEventListener('submit', handleSubmit);
+
+         async function handleSubmit(event) {
+            event.preventDefault();
+
+            
+console.log(eventId)
+            const response = await fetch('/api/addEventById', {
+               method: 'POST',
+               body: JSON.stringify({eventId}),
+               headers: {
+                  'Content-Type': 'application/json',
+               },
+            });
+            const responseData = await response.json();
+
+            form.output.innerText = JSON.stringify(responseData);
+         }
+      </script>
+   </body>
+</html>

@@ -1,25 +1,12 @@
 import { Request, Response } from 'express';
 import { prisma } from '../app';
+import { getUserIdBySessionId } from '../helpers/getUserIdbySessionId';
 
 export async function getStatus(req: Request, res: Response) {
    const sessionId = req.cookies.sessionID;
-   if (!sessionId) {
-      return res.json({
-         err: 'Sesja wygasła',
-      });
-   }
+
    try {
-      const findSession = await prisma.session.findUnique({
-         where: { sessionId },
-      });
-
-      const idUser = findSession?.userId;
-
-      if (!idUser) {
-         res.json({
-            message: 'Użytkownik nie jest zalogowany',
-         });
-      }
+      const idUser = await getUserIdBySessionId(sessionId);
 
       const findUser = await prisma.user.findUnique({
          where: { id: idUser },
@@ -27,7 +14,7 @@ export async function getStatus(req: Request, res: Response) {
       });
 
       res.json({
-         message: 'JESTEŚ ZALOGOWANY',
+         message: 'User is Login',
          login: findUser,
       });
    } catch (err) {

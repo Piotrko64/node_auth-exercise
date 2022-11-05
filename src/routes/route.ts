@@ -6,6 +6,8 @@ import { getStatus } from '../controllers/getStatus';
 import { logoutUser } from '../controllers/logoutUser';
 import { addEvent } from '../controllers/addEvent';
 import { getEvents } from '../controllers/getEvents';
+import { addEventById } from '../controllers/addEventById';
+import { isAuth } from '../middlewares/isAuth';
 const router = express.Router();
 
 pages.forEach((name) => {
@@ -18,12 +20,14 @@ router.post('/api/createUser', createUser);
 
 router.post('/api/login', loginUser);
 
-router.get('/api/status', getStatus);
+router.get('/api/status', isAuth, getStatus);
 
 router.delete('/api/logout', logoutUser);
 
-router.post('/api/addEvent', addEvent);
+router.post('/api/addEvent', isAuth, addEvent);
 
-router.post('/api/getEvents', getEvents);
+router.post('/api/getEvents', isAuth, getEvents);
+
+router.post('/api/addEventById', isAuth, addEventById);
 
 export default router;

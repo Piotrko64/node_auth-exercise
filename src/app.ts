@@ -3,7 +3,7 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import { PrismaClient } from '@prisma/client';
-import { PORT } from '../config';
+import { PORT } from './config';
 import ejsLayout from 'express-ejs-layouts';
 import path from 'path';
 import router from './routes/route';

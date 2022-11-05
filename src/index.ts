@@ -8,7 +8,7 @@ app.get('/register', (req, res) => {
    res.sendFile(getPathToView('register.html'));
 });
 app.get('/login', (req, res) => {
-   res.sendFile(getPathToView('login.html'));
+   res.render('../views/login.ejs');
 });
 app.get('/status', (req, res) => {
    res.sendFile(getPathToView('status.html'));

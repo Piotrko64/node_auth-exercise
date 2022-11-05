@@ -23,6 +23,9 @@ app.get('/login', (req, res) => {
 app.get('/status', (req, res) => {
    res.sendFile(getPathToView('status.html'));
 });
+app.get('/wylogowanie', (req, res) => {
+   res.sendFile(getPathToView('wylogowanie.html'));
+});
 
 app.post('/api/createUser', async (req, res) => {
    let { login, password } = req.body;
@@ -86,19 +89,43 @@ app.get('/api/status', async (req, res) => {
       });
 
       const idUser = findSession?.userId;
+
+      if (!idUser) {
+         res.json({
+            message: 'Użytkownik nie jest zalogowany',
+         });
+      }
+
       const findUser = await prisma.user.findUnique({
          where: { id: idUser },
          include: { TimerEvents: true },
       });
 
       res.json({
-         message: sessionId ? 'JESTEŚ ZALOGOWANY' : 'NIE JESTEŚ ZALOGOWANY',
+         message: 'JESTEŚ ZALOGOWANY',
          login: findUser,
       });
    } catch (err) {
       res.json({
          err,
       });
+   }
+});
+
+app.delete('/api/logout', async (req, res) => {
+   try {
+      const sessionId = req.cookies.sessionID;
+
+      const findSession = await prisma.session.findUnique({
+         where: { sessionId },
+      });
+
+      await prisma.session.deleteMany({
+         where: { userId: findSession?.userId },
+      });
+      res.clearCookie('sessionID').json({ message: 'Zostałeś wylogowany' });
+   } catch (err) {
+      res.json({ err });
    }
 });
 

@@ -6,6 +6,7 @@ import { PrismaClient } from '@prisma/client';
 import { PORT } from '../config';
 import ejsLayout from 'express-ejs-layouts';
 import path from 'path';
+import router from './routes/route';
 
 export const app = express();
 export const prisma = new PrismaClient();
@@ -14,6 +15,7 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(cors());
 app.use(ejsLayout);
+app.use(router);
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(`${__dirname}/views/pages`));

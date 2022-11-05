@@ -7,13 +7,13 @@
       </form>
 
       <script>
-        const eventId = document.querySelector('input').value;
+      
          const form = document.querySelector('form');
          form.addEventListener('submit', handleSubmit);
 
          async function handleSubmit(event) {
             event.preventDefault();
-
+            const eventId = document.querySelector('input').value;
             
 
             const response = await fetch('/api/addEventById', {

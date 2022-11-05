@@ -6,12 +6,15 @@ import sha3 from 'crypto-js/sha3';
 import { v4 } from 'uuid';
 import { getExpires } from './utils/getExpires';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
 
 const prisma = new PrismaClient();
 const app = express();
 
 app.use(cookieParser());
 app.use(bodyParser.json());
+app.use(cors());
+
 bodyParser.urlencoded({ extended: true });
 
 app.get('/register', (req, res) => {

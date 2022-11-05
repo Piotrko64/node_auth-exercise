@@ -17,12 +17,12 @@ model User {
 }
 
 model TimerEvent {
-  userId Int @unique
+  userId Int 
   user User @relation(fields: [userId], references: [id])
   eventId String @unique
   title String 
   description String
-  dateEvent DateTime
+  dataEvent DateTime
    createdAt DateTime @default(now())
 }
 

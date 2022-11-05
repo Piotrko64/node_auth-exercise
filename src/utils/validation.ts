@@ -1,7 +1,6 @@
-import { Response } from 'express';
-
-export function validation(login: string, password: string, res: Response) {
+export function isValidation(login: string, password: string) {
    if (login.length < 4 || password.length < 4) {
-      return res.status(406).json({ err: 'password or login is too short' });
+      return false;
    }
+   return true;
 }

@@ -3,13 +3,15 @@ import { prisma } from '../app';
 import { v4 } from 'uuid';
 import sha3 from 'crypto-js/sha3';
 import { getExpires } from '../utils/getExpires';
-import { validation } from '../utils/validation';
+import { isValidation } from '../utils/validation';
 
 export async function loginUser(req: Request, res: Response) {
    let { login, password } = req.body;
 
    try {
-      validation(login, password, res);
+      if (!isValidation(login, password)) {
+         return res.status(406).json({ err: 'password or login is too short' });
+      }
 
       const user = await prisma.user.findUnique({
          where: { login },

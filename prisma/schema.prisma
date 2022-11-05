@@ -12,4 +12,23 @@ model User {
   login String @unique
   password String
  createdAt DateTime @default(now())
+ Session Session[]
+ Events Event[]
+}
+
+model Session {
+  userId Int @unique
+  user User @relation(fields: [userId], references: [id])
+  sessionId String @unique
+ createdAt DateTime @default(now())
+}
+
+model Event {
+  userId Int @unique
+  user User @relation(fields: [userId], references: [id])
+  eventId String @unique
+  title String 
+  description String
+  dateEvent DateTime
+   createdAt DateTime @default(now())
 }

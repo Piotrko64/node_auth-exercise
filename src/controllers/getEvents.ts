@@ -13,13 +13,13 @@ export async function getEvents(req: Request, res: Response) {
          return res.status(400).json({ err: 'Something is wrong' });
       }
 
-      const addNewEvent = await prisma.timerEvent.findMany({
+      const allEvents = await prisma.timerEvent.findMany({
          where: {
             userId,
          },
       });
-      res.json({ addNewEvent });
+      res.json({ allEvents });
    } catch (err) {
-      res.json({ err });
+      res.status(400).json({ err });
    }
 }

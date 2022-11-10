@@ -7,15 +7,17 @@ import { PORT } from './config';
 import ejsLayout from 'express-ejs-layouts';
 import path from 'path';
 import router from './routes/route';
+import { corsOptions } from './data/corsOptions';
 
 export const app = express();
 export const prisma = new PrismaClient();
 
 app.use(cookieParser());
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(ejsLayout);
 app.use(router);
+
 app.use(express.static('./src/public'));
 
 app.set('view engine', 'ejs');

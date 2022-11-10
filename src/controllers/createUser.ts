@@ -6,8 +6,12 @@ import { isValidation } from '../utils/validation';
 export async function createUser(req: Request, res: Response) {
    let { login, password } = req.body;
 
+   if (!login || !password) {
+      return res.status(406).json({ err: 'Something is bad with request' });
+   }
+
    if (!isValidation(login, password)) {
-      return res.status(406).json({ err: 'password or login is too short' });
+      return res.status(406).json({ err: 'Password or login is too short' });
    }
 
    password = sha3(password).toString();
@@ -17,7 +21,7 @@ export async function createUser(req: Request, res: Response) {
          data: { login, password },
       });
    } catch (err) {
-      return res.json({ err: 'user already exist' });
+      return res.status(406).json({ err: 'User already exist' });
    }
 
    res.json(`User ${login} is created`);

@@ -38,6 +38,6 @@ export async function loginUser(req: Request, res: Response) {
          .cookie('sessionId', sessionId, getExpires())
          .json({ message: 'User is login', dataUser: { login, allEvents } });
    } catch (err) {
-      return res.json({ err });
+      res.status(401).json({ err });
    }
 }

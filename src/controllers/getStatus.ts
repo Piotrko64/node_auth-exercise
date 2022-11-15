@@ -18,8 +18,6 @@ export async function getStatus(req: Request, res: Response) {
          login: findUser,
       });
    } catch (err) {
-      res.json({
-         err,
-      });
+      res.status(401).json({ err });
    }
 }

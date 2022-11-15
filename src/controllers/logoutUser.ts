@@ -3,7 +3,7 @@ import { prisma } from '../app';
 
 export async function logoutUser(req: Request, res: Response) {
    try {
-      const sessionId = req.cookies.sessionID;
+      const sessionId = req.cookies.sessionId;
 
       const findSession = await prisma.session.findUnique({
          where: { sessionId },

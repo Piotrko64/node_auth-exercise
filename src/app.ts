@@ -25,5 +25,5 @@ app.set('views', path.join(`${__dirname}/views/pages`));
 app.set('layout', '../../views/layout/main.ejs');
 
 app.listen(PORT, () => {
-   console.log('App is starting...');
+   console.log('App is starting... (PORT:' + PORT + ')');
 });

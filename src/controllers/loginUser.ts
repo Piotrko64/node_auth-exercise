@@ -35,7 +35,7 @@ export async function loginUser(req: Request, res: Response) {
          },
       });
       return res
-         .cookie('sessionID', sessionId, getExpires())
+         .cookie('sessionId', sessionId, getExpires())
          .json({ message: 'User is login', dataUser: { login, allEvents } });
    } catch (err) {
       return res.json({ err });

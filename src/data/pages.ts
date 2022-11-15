@@ -5,5 +5,6 @@ export const pages = [
    'logout',
    'eventAdd',
    'eventsGet',
+   'autoLogin',
    'addEventById',
 ];

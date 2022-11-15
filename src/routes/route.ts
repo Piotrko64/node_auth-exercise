@@ -5,6 +5,7 @@ import { loginUser } from '../controllers/loginUser';
 import { getStatus } from '../controllers/getStatus';
 import { logoutUser } from '../controllers/logoutUser';
 import { addEvent } from '../controllers/addEvent';
+import { autoLogin } from '../controllers/autoLogin';
 import { getEvents } from '../controllers/getEvents';
 import { addEventById } from '../controllers/addEventById';
 import { isAuth } from '../middlewares/isAuth';
@@ -19,6 +20,8 @@ pages.forEach((name) => {
 router.post('/api/createUser', createUser);
 
 router.post('/api/login', loginUser);
+
+router.post('/api/autoLogin', autoLogin);
 
 router.get('/api/status', isAuth, getStatus);
 

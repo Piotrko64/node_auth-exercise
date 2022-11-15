@@ -19,7 +19,7 @@ export async function autoLogin(req: Request, res: Response) {
       });
 
       return res
-         .cookie('sessionID', sessionId, getExpires())
+         .cookie('sessionId', sessionId, getExpires())
          .json({ message: 'User is login', dataUser: { allEvents } });
    } catch (err) {
       res.status(401).json({ err: 'Something went wrong...' });

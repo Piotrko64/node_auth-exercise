@@ -5,7 +5,7 @@ import { getUserIdBySessionId } from '../helpers/getUserIdbySessionId';
 
 export async function getEvents(req: Request, res: Response) {
    try {
-      const sessionId = req.cookies.sessionID;
+      const sessionId = req.cookies.sessionId;
 
       const userId = await getUserIdBySessionId(sessionId);
 

@@ -11,7 +11,7 @@ export async function loginUser(req: Request, res: Response) {
 
    try {
       if (!isValidation(login, password)) {
-         return res.status(406).json({ err: 'password or login is too short' });
+         return res.status(406).json({ err: 'Password or login is too short' });
       }
 
       const user = await prisma.user.findUnique({

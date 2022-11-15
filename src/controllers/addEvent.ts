@@ -5,7 +5,7 @@ import { getUserIdBySessionId } from '../helpers/getUserIdbySessionId';
 
 export async function addEvent(req: Request, res: Response) {
    try {
-      const sessionId = req.cookies.sessionID;
+      const sessionId = req.cookies.sessionId;
       const { title, description, dataEvent } = req.body;
 
       const idUser = await getUserIdBySessionId(sessionId);
@@ -25,6 +25,6 @@ export async function addEvent(req: Request, res: Response) {
       });
       res.json({ addNewEvent });
    } catch (err) {
-      res.json({ err });
+      res.status(401).json({ err: 'Something went wrong...' });
    }
 }

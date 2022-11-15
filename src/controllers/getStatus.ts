@@ -3,7 +3,7 @@ import { prisma } from '../app';
 import { getUserIdBySessionId } from '../helpers/getUserIdbySessionId';
 
 export async function getStatus(req: Request, res: Response) {
-   const sessionId = req.cookies.sessionID;
+   const sessionId = req.cookies.sessionId;
 
    try {
       const idUser = await getUserIdBySessionId(sessionId);

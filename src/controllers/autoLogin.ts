@@ -22,6 +22,6 @@ export async function autoLogin(req: Request, res: Response) {
          .cookie('sessionID', sessionId, getExpires())
          .json({ message: 'User is login', dataUser: { allEvents } });
    } catch (err) {
-      return res.json({ err });
+      res.status(401).json({ err: 'Something went wrong...' });
    }
 }

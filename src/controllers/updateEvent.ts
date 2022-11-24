@@ -18,6 +18,6 @@ export async function updateEvent(req: Request, res: Response) {
 
       res.json({ message: 'Event has been updated', data: updateUser });
    } catch (err) {
-      res.status(401).json({ err });
+      res.status(401).json({ err: 'Try again later', details: err });
    }
 }

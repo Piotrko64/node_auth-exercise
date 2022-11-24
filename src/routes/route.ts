@@ -9,6 +9,7 @@ import { autoLogin } from '../controllers/autoLogin';
 import { getEvents } from '../controllers/getEvents';
 import { addEventById } from '../controllers/addEventById';
 import { isAuth } from '../middlewares/isAuth';
+import { updateEvent } from '../controllers/updateEvent';
 const router = express.Router();
 
 pages.forEach((name) => {
@@ -21,7 +22,7 @@ router.post('/api/createUser', createUser);
 
 router.post('/api/login', loginUser);
 
-router.post('/api/autoLogin', autoLogin);
+router.get('/api/autoLogin', autoLogin);
 
 router.get('/api/status', isAuth, getStatus);
 
@@ -32,5 +33,7 @@ router.post('/api/addEvent', isAuth, addEvent);
 router.post('/api/getEvents', isAuth, getEvents);
 
 router.post('/api/addEventById', isAuth, addEventById);
+
+router.put('/api/updateEvent', isAuth, updateEvent);
 
 export default router;

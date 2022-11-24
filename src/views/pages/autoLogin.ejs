@@ -12,9 +12,7 @@
             event.preventDefault();
            
 
-            const response = await fetch('/api/autoLogin',{
-                method: 'POST'
-            });
+            const response = await fetch('/api/autoLogin');
 
             const responseData = await response.json();
 

@@ -7,4 +7,5 @@ export const pages = [
    'eventsGet',
    'autoLogin',
    'addEventById',
+   'updateEvent',
 ];

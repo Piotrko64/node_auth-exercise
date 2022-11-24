@@ -1,26 +1,30 @@
-    <h2> ADD RANDOM EVENT </h2>
+    <h2> ADD RANDOM UPDATE</h2>
       <form>
-        
-      <button type="submit"> ADD RANDOM EVENT </button>
+        <label for="input"> Provide Id</label>
+        <input id="input"/>
+      <button type="submit">  UPDATE WITH RANDOM DATA BY ID</button>
         <output name="output"></output>
 
       </form>
 
       <script>
          const form = document.querySelector('form');
+ const input = document.querySelector('input');
+
          form.addEventListener('submit', handleSubmit);
 
          async function handleSubmit(event) {
             event.preventDefault();
 
             const randomEvent = {
+                eventId: input.value,
                 title: 'random' + Math.random(),
-                description: 'Description',
+                description: 'Description1' + Math.random(),
                 dataEvent: new Date('2022-12-24T21:04:12.113Z')
                         }
 
-            const response = await fetch('/api/addEvent', {
-               method: 'POST',
+            const response = await fetch('/api/updateEvent', {
+               method: 'PUT',
                body: JSON.stringify(randomEvent),
                headers: {
                   'Content-Type': 'application/json',

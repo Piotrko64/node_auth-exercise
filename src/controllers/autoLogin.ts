@@ -4,8 +4,8 @@ import { getUserIdBySessionId } from '../helpers/getUserIdbySessionId';
 import { prisma } from '../app';
 
 export async function autoLogin(req: Request, res: Response) {
-   const { sessionId } = req.cookies;
-
+   const sessionId = req.cookies.sessionId;
+   console.log(req.cookies.sessionId);
    try {
       if (!sessionId) {
          return res.status(403).json({ message: 'Session expired' });

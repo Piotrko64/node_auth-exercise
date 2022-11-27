@@ -10,6 +10,7 @@ import { getEvents } from '../controllers/getEvents';
 import { addEventById } from '../controllers/addEventById';
 import { isAuth } from '../middlewares/isAuth';
 import { updateEvent } from '../controllers/updateEvent';
+import { deleteEvent } from '../controllers/deleteEvent';
 const router = express.Router();
 
 pages.forEach((name) => {
@@ -35,5 +36,7 @@ router.post('/api/getEvents', isAuth, getEvents);
 router.post('/api/addEventById', isAuth, addEventById);
 
 router.put('/api/updateEvent', isAuth, updateEvent);
+
+router.delete('/api/deleteEvent', isAuth, deleteEvent);
 
 export default router;

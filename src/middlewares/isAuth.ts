@@ -12,7 +12,7 @@ export async function isAuth(req: Request, res: Response, next: NextFunction) {
    const idUser = await getUserIdBySessionId(sessionId);
 
    if (!idUser) {
-      return res.json({
+      return res.status(403).json({
          message: 'User is not login',
       });
    }

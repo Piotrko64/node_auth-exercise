@@ -8,4 +8,5 @@ export const pages = [
    'autoLogin',
    'addEventById',
    'updateEvent',
+   'deleteEvent',
 ];

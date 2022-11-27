@@ -21,7 +21,7 @@ export async function addEventById(req: Request, res: Response) {
       });
 
       if (!findEvent) {
-         return res.json({ err: 'This event don"t exist' });
+         return res.status(404).json({ err: "This event don't exist" });
       }
 
       const { title, description, dataEvent } = findEvent;
@@ -35,7 +35,7 @@ export async function addEventById(req: Request, res: Response) {
          },
       });
 
-      res.json({ createOwnEvent });
+      res.json({ message: 'Everything is ok!', data: createOwnEvent });
    } catch (err) {
       res.status(401).json({ err: 'Something went wrong...' });
    }

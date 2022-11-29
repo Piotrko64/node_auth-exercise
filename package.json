@@ -6,7 +6,8 @@
    "scripts": {
       "start": "node dist/src/app.js",
       "dev": "nodemon src/app.ts",
-      "build": "tsc"
+      "build": "tsc",
+      "startRender": "node app.js"
    },
    "author": "Front Flex",
    "license": "ISC",

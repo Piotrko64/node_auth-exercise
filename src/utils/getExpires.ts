@@ -6,3 +6,11 @@ export function getExpires() {
       httpOnly: false,
    };
 }
+
+export function getDateExpires() {
+   return new Date(1000 * 60 * 60 * hours + Date.now()).toUTCString();
+}
+
+export function clearCookiesFront() {
+   return `sessionId=nothing;${new Date().toUTCString()}`;
+}

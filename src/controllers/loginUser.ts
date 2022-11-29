@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { prisma } from '../app';
 import { v4 } from 'uuid';
 import sha3 from 'crypto-js/sha3';
-import { getExpires } from '../utils/getExpires';
+import { getDateExpires, getExpires } from '../utils/getExpires';
 import { isValidation } from '../utils/validation';
 import { getUserIdBySessionId } from '../helpers/getUserIdbySessionId';
 
@@ -34,9 +34,11 @@ export async function loginUser(req: Request, res: Response) {
             userId,
          },
       });
-      return res
-         .cookie('sessionId', sessionId, getExpires())
-         .json({ message: 'User is login', dataUser: { login, allEvents } });
+      return res.cookie('sessionId', sessionId, getExpires()).json({
+         message: 'User is login',
+         dataUser: { login, allEvents },
+         cookie: `sessionId=${sessionId};expires=${getDateExpires()}`,
+      });
    } catch (err) {
       res.status(401).json({ err });
    }
